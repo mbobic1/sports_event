@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Login.css"
+import "./css/Login.css"
 import Axios from 'axios'
 
 
@@ -30,12 +30,29 @@ const LoginForm = () => {
             setLista(response.data);
         })
     }, []);
-    /*
+
+    const posaljiPodatke = () => {
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function() {
+            if(ajax.readyState === 4 && ajax.status === 200) {
+                //var jsoneRez = JSON.parse(ajax.responseText);
+                console.log("vratio",ajax.responseText)
+            }else if (ajax.readyState === 4 && ajax.status === 400) {
+                //var jsonRez = JSON.parse(ajax.responseText);
+                console.log("ERROR ",ajax.responseText)
+            }
+        }
+        ajax.withCredentials=true
+        ajax.open("POST", "http://localhost:3001/api/login", true);
+        ajax.setRequestHeader("Content-Type", "application/json");
+        ajax.send(JSON.stringify({username: username}));
+        window.location.assign("http://localhost:3000/posts");
+    }
+    
     const provjeriImaLiKorisnika = () =>{
         lista.map((val) => {
             if(provjeriStringove(val.username,username)===true && provjeriStringove(val.password,password)===true){
-                loginUser();
-                window.location.assign("http://localhost:3000/afterLogin");
+                posaljiPodatke();
             }
             else if(provjeriStringove(val.username,username)===true && provjeriStringove(val.password,password)===false){
                 showPopu("login-popup")
@@ -59,29 +76,10 @@ const LoginForm = () => {
             }
         });
     }
-    */
-    const pozovi = () => {
-    var ajax = new XMLHttpRequest();
-    ajax.onreadystatechange = function() {
-        if(ajax.readyState == 4 && ajax.status==200) {
-            //var jsoneRez = JSON.parse(ajax.responseText);
-            console.log("vratio",ajax.responseText)
-        }else if (ajax.readyState == 4 && ajax.status == 400) {
-            //var jsonRez = JSON.parse(ajax.responseText);
-            console.log("ERROR ",ajax.responseText)
-        }
-    }
-    ajax.withCredentials=true
-    ajax.open("POST", "http://localhost:3001/api/login", true);
-    ajax.setRequestHeader("Content-Type", "application/json");
-    ajax.send(JSON.stringify({username: username}));
-    window.location.assign("http://localhost:3000/posts");
-   }
-
     return ( 
         <div className="App1"> 
             <div className="cover">
-                    <h1>Logiraj se</h1>
+                    <h1>Prijavi se</h1>
                     <input type="text" placeholder="username" onChange={(e)=>{
                         setUsername(e.target.value)
                     }}/>
@@ -89,7 +87,7 @@ const LoginForm = () => {
                         setPassword(e.target.value)
                     }}/>
                     <p>Nisi registrovan.<a href="/">  Registruj se</a></p>
-                    <button className="login-btn" onClick={pozovi}> Logiraj se</button>
+                    <button className="login-btn" onClick={provjeriImaLiKorisnika}> Logiraj se</button>
                     <div className={vrijednostUnosa}>
                         <h2>Niste popunili sve polja.</h2>
                     </div>

@@ -4,6 +4,9 @@ const mysql = require('mysql2');
 const express = require('express');
 const session = require('express-session');
 
+
+//popraviti da se sessioja odmah updejta ne nakon ponovnog pristupa
+
 const app = express();
 app.use(cors({
     origin: 'http://localhost:3000', // replace with your client's origin URL
@@ -37,9 +40,8 @@ app.get("/api/get", (req,res) => {
     }); 
 });
 
-
 app.get("/api/userSession1", (req,res) => {
-    console.log("User pri get session kada funckiji je " + req.session.username+ "   " +req.session.name);
+    //console.log("User pri get session kada funckiji je " + req.session.username+ "   " +req.session.name);
     res.send(req.session.username);  
 });
  
@@ -58,7 +60,7 @@ app.post("/api/login", (req, res) => {
         
         req.session.name = result[0].name;
         console.log("Postvljen"+req.session.name)
-        res.send("asdasfas");
+        res.send("Postavljen user");
     });
  })
  
@@ -80,6 +82,23 @@ app.post('/logout', function(req,res){
    //req.session.destroy();
     res.send(JSON.stringify('Obrisano je'));
  });
+
+ app.post('/posts/insert', function(req, res){
+    const title = req.body.title;
+    const postText = req.body.postText;
+    const username = req.body.username; 
+    const sqlInsert = 'INSERT INTO posts (title, postText, username) VALUES (?,?,?)';
+    db.query(sqlInsert, [title, postText, username], (err, result) => {
+        console.log(result);
+    })
+ });
+
+ app.get('/posts/get', function(req,res){
+    const sqlGet = 'SELECT * FROM posts;'
+    db.query(sqlGet, (err, result) =>{
+        res.send(result);
+    }); 
+ })
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");

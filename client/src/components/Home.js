@@ -1,5 +1,5 @@
 import React from "react";
-import './Home.css'
+import './css/Home.css'
 
 //potreban symlink kako bi spojio public folder sa component folderom
 const Background = () =>{

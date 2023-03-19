@@ -1,11 +1,41 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import './TopBar.css'
+import { useRef ,useState, useEffect } from 'react';
+import { observer } from "mobx-react";
+import  Axios  from 'axios';
+import './css/TopBar.css'
+//import ReactDOM from 'react-dom';
 
 
 const TopBar = () => {
-    const user = false;
+    const [sessionUs, setSessionUs] = useState('');
+    const userRef = useRef(false);
+
+
+    useEffect( () => {
+        Axios.get('http://localhost:3001/api/userSession1', {
+        withCredentials: true
+    })
+        .then(response => {
+            const data = response.data; // this line reads the data from the response object
+            setSessionUs(data);
+            if(sessionUs){
+                userRef.current = true;
+            }else{
+                userRef.current = false;
+            }
+    })
+        .catch(error => {
+            console.log("Error se desio kod session user" + error);        
+        });
+    });
+
+    console.log("top bar je " + sessionUs);
+    const user = userRef.current;
+    console.log("USER JE "+ user);
+
     return(
+        
         <div className="citav">
             <div className="top">
                 <div className="topLeft">
@@ -37,8 +67,12 @@ const TopBar = () => {
                         />
                         <ul className="topList">
                             <li className="topListItem">                
+                                <Link className="link" to="/createPost">KREIRAJ DOGAĐAJ</Link>            
+                            </li>
+                            <li className="topListItem">                
                                 <Link className="link" to="/login">ODJAVI SE</Link>            
                             </li>
+                            
                         </ul>                       
                     </div>                     
                 ) : (            
@@ -58,5 +92,4 @@ const TopBar = () => {
     );
 
 }
-
-export default TopBar;
+export default  observer(TopBar);

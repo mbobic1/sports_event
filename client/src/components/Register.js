@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import "./Register.css"
+import "./css/Register.css"
 
 
 const SigninForm = () => {
@@ -16,10 +16,10 @@ const SigninForm = () => {
         }else{
             var ajax = new XMLHttpRequest();
             ajax.onreadystatechange = function() {
-                if(ajax.readyState == 4 && ajax.status==200) {
+                if(ajax.readyState === 4 && ajax.status ===200) {
                     //var jsoneRez = JSON.parse(ajax.responseText);
                     console.log("vratio",ajax.responseText)
-                }else if (ajax.readyState == 4 && ajax.status == 400) {
+                }else if (ajax.readyState === 4 && ajax.status === 400) {
                     //var jsonRez = JSON.parse(ajax.responseText);
                     console.log("ERROR ",ajax.responseText)
                 }
