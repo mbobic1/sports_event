@@ -1,6 +1,6 @@
 const bodyParser = require("body-parser");
 const cors = require('cors');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const express = require('express');
 const session = require('express-session');
 
@@ -24,7 +24,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
  }));
-const db = require('./models');
+
 
 app.get('/', (req, res) => {
  
@@ -36,16 +36,17 @@ app.get("/api/get", (req,res) => {
         res.send(result);
     }); 
 });
- 
-app.get("/api/userSession", (req,res) => {
-    console.log("User pri get session kada funckiji je " + req.session.username+req.session.name);
+
+
+app.get("/api/userSession1", (req,res) => {
+    console.log("User pri get session kada funckiji je " + req.session.username+ "   " +req.session.name);
     res.send(req.session.username);  
- });
+});
  
 app.post("/api/login", (req, res) => { 
-    console.log("User name je: " + req.body.data.username)
-    if (req.body.data.username) {
-        req.session.username = req.body.data.username;
+    console.log("User name je: " + req.body.username)
+    if (req.body.username) {
+        req.session.username = req.body.username;
     } else {
         console.log("elseeeeeeeeeee")
         res.status(401).send('Invalid username or password');
@@ -53,11 +54,11 @@ app.post("/api/login", (req, res) => {
     console.log("Userkk name je: " + req.session.username)
      
     var sqlGet = 'SELECT name FROM osoba WHERE username = ?';
-    db.query(sqlGet, [req.body.data.username] ,(err, result) => { //asihrono izvrsiti
+    db.query(sqlGet, [req.body.username] ,(err, result) => { //asihrono izvrsiti
         
-       //req.session.name = result[0].name;
+        req.session.name = result[0].name;
         console.log("Postvljen"+req.session.name)
-        res.send("dlkgjag")
+        res.send("asdasfas");
     });
  })
  
@@ -69,23 +70,10 @@ app.post("/api/insert", (req, res) => {
     db.query(sqlInsert, [username, password, name], (err, result) =>{
         console.log(result);
     }); 
+    req.session.username = req.body.username;
     req.session.name = name;
+    res.send("postavljen user");
     req.session.save();
- });
- 
-app.get("/api/isLoggedIn", (req, res) => {
-    const usersession = req.session.user;
-    if (!usersession) { // check if the user is not logged in
-        res.send(false);
-        return;
-    }
-    const sqlGet = 'SELECT name FROM osoba WHERE name = ' + usersession;
-    console.log("Session je upisan" + usersession);
-    console.log(sqlGet);
-    db.query(sqlGet, (err, result) => {
-        console.log(result);
-        res.send(result);
-     });
  });
  
 app.post('/logout', function(req,res){
