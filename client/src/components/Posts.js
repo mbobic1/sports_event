@@ -21,7 +21,7 @@ const Posts = () => {
         .catch(error => {
             console.log("Error se desio kod session user" + error);        
         });
-    });
+    }, []);
 
     useEffect( () => {
         Axios.get('http://localhost:3001/posts/get', {
@@ -36,6 +36,7 @@ const Posts = () => {
 
     return ( 
         <div className="App1">  
+        
             <div className="App">
                 {listOfPosts.map((value, key) => {
                     return(

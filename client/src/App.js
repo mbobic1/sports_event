@@ -14,7 +14,7 @@ function App() {
                                   backgroundSize: "cover",
                                   width: '100%',
                                   height: '100%' }}>
-      <TopBar />
+      <TopBar moj={'sadas'} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<LoginForm />} />  

@@ -7,31 +7,43 @@ import './css/TopBar.css'
 //import ReactDOM from 'react-dom';
 
 
-const TopBar = () => {
+const TopBar = (props) => {
+
+    console.log("konj" + props.moj);
     const [sessionUs, setSessionUs] = useState('');
     const userRef = useRef(false);
+    const [user, setUSer] = useState(false);  
 
-
+    console.log("sakdnsakfaskjfoasjf'as");
     useEffect( () => {
+        console.log("USER2222 JE "+ user);
+
         Axios.get('http://localhost:3001/api/userSession1', {
         withCredentials: true
     })
         .then(response => {
             const data = response.data; // this line reads the data from the response object
             setSessionUs(data);
-            if(sessionUs){
+            console.log("DATA je" + sessionUs);
+            if(sessionUs!== null){
+                console.log("ULAZI AKO JE TAACNO")
                 userRef.current = true;
+                setUSer(true);
             }else{
                 userRef.current = false;
             }
+        console.log("USER11111 JE "+ user);
+
+
     })
         .catch(error => {
             console.log("Error se desio kod session user" + error);        
         });
-    });
+    },[ ]);
 
     console.log("top bar je " + sessionUs);
-    const user = userRef.current;
+    
+    //setUser(userRef.current);
     console.log("USER JE "+ user);
 
     return(
