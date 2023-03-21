@@ -30,8 +30,8 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
- 
-})
+    res.send("U home je");
+})  
  
 app.get("/api/get", (req,res) => {
     const sqlInsert = "SELECT * FROM osoba;";
@@ -41,27 +41,29 @@ app.get("/api/get", (req,res) => {
 });
 
 app.get("/api/userSession1", (req,res) => {
-    //console.log("User pri get session kada funckiji je " + req.session.username+ "   " +req.session.name);
+    console.log("User pri get session kada funckiji je " + req.session.username+ "   " +req.session.name);
     res.send(req.session.username);  
 });
  
 app.post("/api/login", (req, res) => { 
     console.log("User name je: " + req.body.username)
+
     if (req.body.username) {
-        req.session.username = req.body.username;
+        var sqlGetLogin = 'SELECT * FROM osoba WHERE username =? AND password=?';
+        db.query(sqlGetLogin, [req.body.username, req.body.password] ,(err, result) => {
+            if(result.length!==0){
+                req.session.username = req.body.username;
+                req.session.name = result[0].name;
+                res.send("true");
+            }
+            else{
+                res.send("false");
+            }
+        });
     } else {
         console.log("elseeeeeeeeeee")
         res.status(401).send('Invalid username or password');
     }
-    console.log("Userkk name je: " + req.session.username)
-     
-    var sqlGet = 'SELECT name FROM osoba WHERE username = ?';
-    db.query(sqlGet, [req.body.username] ,(err, result) => { //asihrono izvrsiti
-        
-        req.session.name = result[0].name;
-        console.log("Postvljen"+req.session.name)
-        res.send("Postavljen user");
-    });
  })
  
 app.post("/api/insert", (req, res) => { 
@@ -79,8 +81,7 @@ app.post("/api/insert", (req, res) => {
  });
  
 app.post('/logout', function(req,res){
-   //req.session.destroy();
-    res.send(JSON.stringify('Obrisano je'));
+    req.session.destroy();
  });
 
  app.post('/posts/insert', function(req, res){

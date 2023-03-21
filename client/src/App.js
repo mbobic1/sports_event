@@ -8,6 +8,9 @@ import Posts from './components/Posts';
 import Register from './components/Register'
 
 function App() {
+
+  
+
   return (
     <Router>
       <div className="App" style={{ backgroundImage: "url(http://localhost:3000/wallpaper.jpeg)",

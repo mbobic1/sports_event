@@ -4,11 +4,12 @@ import { useRef ,useState, useEffect } from 'react';
 import { observer } from "mobx-react";
 import  Axios  from 'axios';
 import './css/TopBar.css'
-//import ReactDOM from 'react-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const TopBar = (props) => {
-
+    const navigate = useNavigate();
     console.log("konj" + props.moj);
     const [sessionUs, setSessionUs] = useState('');
     const userRef = useRef(false);
@@ -46,6 +47,26 @@ const TopBar = (props) => {
     //setUser(userRef.current);
     console.log("USER JE "+ user);
 
+  
+    const handleLogout = async () => {
+        try {
+        // perform logout logic here
+            try {
+                const response = await Axios.post('http://localhost:3001/api/login', {
+            
+                }, {
+                withCredentials: true // include credentials in the request
+                });
+                console.log(response);
+            } catch (error) {
+                console.error(error);
+            }    
+        navigate('/');
+        } catch (error) {
+        console.error(error);
+        }
+    }
+
     return(
         
         <div className="citav">
@@ -82,7 +103,7 @@ const TopBar = (props) => {
                                 <Link className="link" to="/createPost">KREIRAJ DOGAĐAJ</Link>            
                             </li>
                             <li className="topListItem">                
-                                <Link className="link" to="/login">ODJAVI SE</Link>            
+                                <Link className="link" onClick={handleLogout} to="/login">ODJAVI SE</Link>            
                             </li>
                             
                         </ul>                       
