@@ -41,13 +41,19 @@ app.get("/api/get", (req,res) => {
 });
 
 app.get("/api/userSession1", (req,res) => {
-    console.log("User pri get session kada funckiji je " + req.session.username+ "   " +req.session.name);
-    res.send(req.session.username);  
+    console.log("SEssion unutar sesess je " + req.session.username);
+    let myObj = req.session.username;
+    if(typeof myObj === "undefined"){
+        console.log("Da li ulazi ovdje");
+        res.send("false");
+    }
+    else{
+        res.send(req.session.username);        
+    }      
 });
  
 app.post("/api/login", (req, res) => { 
     console.log("User name je: " + req.body.username)
-
     if (req.body.username) {
         var sqlGetLogin = 'SELECT * FROM osoba WHERE username =? AND password=?';
         db.query(sqlGetLogin, [req.body.username, req.body.password] ,(err, result) => {
@@ -70,18 +76,26 @@ app.post("/api/insert", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const name = req.body.name;
-    const sqlInsert = "INSERT INTO osoba (username, password, name) VALUES (?,?,?)";
-    db.query(sqlInsert, [username, password, name], (err, result) =>{
-        console.log(result);
-    }); 
-    req.session.username = req.body.username;
-    req.session.name = name;
-    res.send("postavljen user");
-    req.session.save();
+     var sqlGetLogin = 'SELECT * FROM osoba WHERE username =? AND password=? AND name=?';
+        db.query(sqlGetLogin, [req.body.username, req.body.password, req.body.name] ,(err, result) => {
+        if(result.length!==0){
+            res.send("false");
+        }else{
+            const sqlInsert = "INSERT INTO osoba (username, password, name) VALUES (?,?,?)";
+            db.query(sqlInsert, [username, password, name], (err, result1) =>{
+                console.log(result1);
+            }); 
+            req.session.username = req.body.username;
+            req.session.name = name;
+            res.send("true");
+            req.session.save();
+        }
+    })
  });
  
 app.post('/logout', function(req,res){
     req.session.destroy();
+    res.send("false");
  });
 
  app.post('/posts/insert', function(req, res){

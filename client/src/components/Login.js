@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./css/Login.css"
 import Axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 
 const LoginForm = () => {
-    
+    const navigate = useNavigate();
     function provjeriStringove(x1,x2){
         if(x1 === x2){
             return true;
@@ -41,7 +42,7 @@ const LoginForm = () => {
                     withCredentials: true // include credentials in the request
                 });
                 if(provjeriStringove(response.data,true)){
-                    window.location.assign("http://localhost:3000/posts");
+                    navigate("/posts");
                 }
                 else{
                     showPopu("login-popup")

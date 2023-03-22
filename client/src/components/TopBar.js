@@ -15,44 +15,30 @@ const TopBar = (props) => {
     const userRef = useRef(false);
     const [user, setUSer] = useState(false);  
 
-    console.log("sakdnsakfaskjfoasjf'as");
+    
     useEffect( () => {
-        console.log("USER2222 JE "+ user);
-
         Axios.get('http://localhost:3001/api/userSession1', {
         withCredentials: true
     })
         .then(response => {
-            const data = response.data; // this line reads the data from the response object
-            setSessionUs(data);
-            console.log("DATA je" + sessionUs);
-            if(sessionUs!== null){
-                console.log("ULAZI AKO JE TAACNO")
-                userRef.current = true;
+            console.log("DATA je" + response.data);
+            if(response.data!== false){
                 setUSer(true);
             }else{
-                userRef.current = false;
+                setUSer(false);
             }
-        console.log("USER11111 JE "+ user);
-
-
     })
         .catch(error => {
             console.log("Error se desio kod session user" + error);        
         });
-    },[ ]);
-
-    console.log("top bar je " + sessionUs);
-    
-    //setUser(userRef.current);
-    console.log("USER JE "+ user);
+    });
 
   
     const handleLogout = async () => {
         try {
         // perform logout logic here
             try {
-                const response = await Axios.post('http://localhost:3001/api/login', {
+                const response = await Axios.post('http://localhost:3001/logout', {
             
                 }, {
                 withCredentials: true // include credentials in the request

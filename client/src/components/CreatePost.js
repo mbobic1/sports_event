@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import Axios from "axios";
-import "./css/Register.css"
+import "./css/CreatePost.css"
 import { useNavigate } from "react-router-dom"; 
 
 
@@ -23,7 +23,7 @@ const SigninForm = () => {
                 popup();
             }
             else{
-                const response = await Axios.post('http://localhost:3001/api/insert', {
+                const response = await Axios.post('http://localhost:3001/posts/insert', {
                     username: username,
                     password: password,
                     name: name
@@ -58,18 +58,17 @@ const SigninForm = () => {
     return ( 
         <div className="App1"> 
             <div className="cover">
-                    <h1>Registruj se</h1>
-                    <input type="text" placeholder="username" onChange={(e)=>{
+                    <h1>Kreiraj post</h1>
+                    <input type="text" placeholder="naziv aktivnosti" onChange={(e)=>{
                         setUsername(e.target.value)
                     }}/>
-                    <input type="password" placeholder="password" onChange={(e)=>{
+                    <input type="text" className="opis" placeholder="opis događaja" onChange={(e)=>{
                         setPassword(e.target.value)
                     }}/>
                     <input type="text" placeholder="nickname" onChange={(e)=>{
                         setName(e.target.value)
                     }}/>
-                    <p>Već imate profil. <a href="/">Prijavi se</a></p>
-                    <button className="login-btn" onClick={postData}>Registruj se</button>
+                    <button className="login-btn" onClick={postData}>Kreiraj post</button>
                                         
                     <div className={popupStyle}>
                         <h2>Niste popunili sve polja.</h2>
