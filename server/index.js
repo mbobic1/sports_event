@@ -101,10 +101,12 @@ app.post('/logout', function(req,res){
  app.post('/posts/insert', function(req, res){
     const title = req.body.title;
     const postText = req.body.postText;
-    const username = req.body.username; 
+    const username = req.body.name;
+    console.log("Podatke koje saljemo su: " + title + " " + postText + " " + username); 
     const sqlInsert = 'INSERT INTO posts (title, postText, username) VALUES (?,?,?)';
     db.query(sqlInsert, [title, postText, username], (err, result) => {
         console.log(result);
+        res.send("true");
     })
  });
 
@@ -114,6 +116,14 @@ app.post('/logout', function(req,res){
         res.send(result);
     }); 
  })
+
+ app.get('/getPostbyId', function(req,res){
+    const postId = req.query.postId;
+    const sqlGet = "SELECT * FROM posts WHERE id = ?;"
+    db.query(sqlGet, [postId] , (err, result) => {
+        res.send(result);
+    })
+ });
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");

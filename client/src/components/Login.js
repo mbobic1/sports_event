@@ -65,7 +65,7 @@ const LoginForm = () => {
                     <input type="password" placeholder="password" onChange={(e)=>{
                         setPassword(e.target.value)
                     }}/>
-                    <p>Nisi registrovan.<a href="/">  Registruj se</a></p>
+                    <p>Nisi registrovan. <a href="/">Registruj se</a></p>
                     <button className="login-btn" onClick={postData}> Logiraj se</button>
                     <div className={vrijednostUnosa}>
                         <h2>Niste popunili sve polja.</h2>

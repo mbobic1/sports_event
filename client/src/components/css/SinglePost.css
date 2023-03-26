@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand";
+}
+
+.App1{
+    height: 87vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

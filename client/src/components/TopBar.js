@@ -64,6 +64,7 @@ const TopBar = (props) => {
                     <i className="topIcon fab fa-twitter-square"></i>
                 </div>
                 <div className="topCenter">
+                {user ? (
                 <ul className="topList">
                     <li className="topListItem">
                         <Link className="link" to="/">HOME</Link>
@@ -74,7 +75,24 @@ const TopBar = (props) => {
                     <li className="topListItem">
                         <Link className="link" to="/contact">KONTAKT</Link>
                     </li>
+                    <li className="topListItem">
+                        <Link className="link" to="/posts">DOGAĐAJI</Link>
+                    </li>
                 </ul>
+                ) :(
+                    <ul className="topList">
+                    <li className="topListItem">
+                        <Link className="link" to="/">HOME</Link>
+                    </li>
+                    <li className="topListItem">
+                        <Link className="link" to="/about">ABOUT</Link>
+                    </li>
+                    <li className="topListItem">
+                        <Link className="link" to="/contact">KONTAKT</Link>
+                    </li>
+
+                </ul>
+                )}
                 </div>
                 <div className="topRight">          
                 {user ? (

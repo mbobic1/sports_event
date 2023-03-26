@@ -7,6 +7,7 @@ import LoginForm from './components/Login';
 import Posts from './components/Posts';
 import Register from './components/Register'
 import CreatePost from './components/CreatePost'
+import SinglePost from './components/SinglePost'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/register' element={<Register />} />  
           <Route path='/posts' element={<Posts />} />  
           <Route path='/createPost' element={<CreatePost />} />
+          <Route path='/singlePost/:id' element={<SinglePost />} />
         </Routes>
       </div>
     </Router>
