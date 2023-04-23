@@ -47,13 +47,13 @@ const Posts = () => {
     return ( 
         <div className="App1">  
         
-            <div className="App">
+            <div className="App-posts">
                 {listOfPosts.map((value, key) => {
                     return(
                         <div className="post" onClick={ () => postData(value.id) }>
-                            <div className="title">{value.title}</div>
+                            <div className="title" style={{backgroundColor: "#f0f2f5", color: "black"}}>{value.title}</div>
                             <div className="body">{value.postText}</div>
-                            <div className="footer">{value.username}</div>
+                            <div className="footer" style={{backgroundColor: "#f0f2f5", color: "black"}}>{value.username}</div>
                         </div>
                     );
                 })}

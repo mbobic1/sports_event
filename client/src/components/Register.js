@@ -57,7 +57,7 @@ const SigninForm = () => {
     
     return ( 
         <div className="App1"> 
-            <div className="cover">
+            <div className="cover1234">
                     <h1>Registruj se</h1>
                     <input type="text" placeholder="username" onChange={(e)=>{
                         setUsername(e.target.value)
@@ -68,7 +68,7 @@ const SigninForm = () => {
                     <input type="text" placeholder="nickname" onChange={(e)=>{
                         setName(e.target.value)
                     }}/>
-                    <p>Već imate profil. <a href="/">Prijavi se</a></p>
+                    <p>Već imate profil. <a href="/login">Prijavi se</a></p>
                     <button className="login-btn" onClick={postData}>Registruj se</button>
                                         
                     <div className={popupStyle}>

@@ -57,7 +57,7 @@ const LoginForm = () => {
 
     return ( 
         <div className="App1"> 
-            <div className="cover">
+            <div className="cover1234">
                     <h1>Prijavi se</h1>
                     <input type="text" placeholder="username" onChange={(e)=>{
                         setUsername(e.target.value)
@@ -65,7 +65,7 @@ const LoginForm = () => {
                     <input type="password" placeholder="password" onChange={(e)=>{
                         setPassword(e.target.value)
                     }}/>
-                    <p>Nisi registrovan. <a href="/">Registruj se</a></p>
+                    <p>Nisi registrovan. <a href="/register">Registruj se</a></p>
                     <button className="login-btn" onClick={postData}> Logiraj se</button>
                     <div className={vrijednostUnosa}>
                         <h2>Niste popunili sve polja.</h2>

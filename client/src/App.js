@@ -15,10 +15,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App" style={{ backgroundImage: "url(http://localhost:3000/wallpaper.jpeg)",
-                                  backgroundSize: "cover",
-                                  width: '100%',
-                                  height: '100%' }}>
+      <div className="App" >
       <TopBar moj={'sadas'} />
         <Routes>
           <Route path='/' element={<Home />} />

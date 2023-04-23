@@ -14,8 +14,11 @@
     align-items: center;
 }
 
-.cover{
-    background-color: white;
+.cover1234{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    -webkit-backdrop-filter: blur(13px);
+    backdrop-filter: blur(13px);
     width: 30em;
     height: 35em;
     position: relative;
