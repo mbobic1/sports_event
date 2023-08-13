@@ -13,7 +13,6 @@ const SinglePost = () => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
 
-    console.log("Uslo je u SinglePost klasu");
     useEffect( () => {
         Axios.get("http://localhost:3001/getPostbyId", {
             params: {
@@ -22,7 +21,6 @@ const SinglePost = () => {
             withCredentials: true
           })
           .then(response => {
-            console.log(response.data);
             setPost(response.data)
           })
           .catch(error => {
@@ -30,8 +28,34 @@ const SinglePost = () => {
           });
     }, []);
 
-    const addComment = () => {
+    useEffect( () => {
+      Axios.get("http://localhost:3001/getCommentsbyId", {
+        params: {
+          postId: id
+        },
+        withCredentials: true
+      })
+      .then(response => {
+        const data = response.data      
+        setComments(data);       
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    }, []);
 
+    const addComment = async () => {
+      const response = await Axios.post("http://localhost:3001/insertComment", {
+        comment: newComment,
+        postId: id,
+      },{
+        withCredentials: true
+      })
+      .then((response) => {
+        const commentToAdd = { commentBody: newComment };
+        setComments([...comments, commentToAdd]);
+        setNewComment("");
+      });
     }
     
     return(
@@ -49,35 +73,27 @@ const SinglePost = () => {
                   })}
             </div>
             <div className="rightSide">
-              <div class="row d-flex justify-content-center" style={{ marginTop: "150px"}}>
-                <div class="col-md-8 col-lg-6">
-                  <div class="card shadow-0 border" style={{backgroundColor: "#f0f2f5"}}>
-                    <div class="card-body p-4">
-                      <div class="form-outline mb-4">
-                        <input type="text" id="addANote" class="form-control" placeholder="Type comment..." />
-                        <label class="form-label" for="addANote" style={{color: "black"}}>+ Add a note</label>
-                          <div class="card">
-                            <div class="card-body">
-                              <p style={{color: "black"}}>Type your note, and hit enter to add it</p>
-
-                              <div class="d-flex justify-content-between">
-                                <div class="d-flex flex-row align-items-center">
-                                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="avatar" width="25"
-                                    height="25" />
-                                  <p class="small mb-0 ms-2" style={{color: "black"}}>Johny</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center">
-                                  <p class="small text-muted mb-0">Upvote?</p>
-                                  <i class="far fa-thumbs-up ms-2 fa-xs text-black" style={{marginTop: "-0.16rem"}}></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
+                <div className="addCommentContainer">
+                  <input
+                    type="text"
+                    placeholder="Comment..."
+                    autoComplete="off"
+                    value={newComment}
+                    onChange={(event) => {
+                      setNewComment(event.target.value);
+                    }}
+                  />
+                  <button variant="outlined" size="medium" onClick={addComment}> Add Comment</button>
+               </div>
+               <div className="listOfComments">
+                {comments.map((comment, key) => {
+                  return (
+                    <div key={key} className="comment">
+                      {comment.comment}
                     </div>
-                  </div>
-                </div>
-              </div>    
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

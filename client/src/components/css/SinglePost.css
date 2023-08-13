@@ -32,6 +32,35 @@
 
     color: white;
 }
+.rightSide .addCommentContainer {
+    flex: 20%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    margin-top: 25px;
+  }
+.addCommentContainer{
+    padding-top: 15%;
+
+}
+.rightSide .listOfComments {
+    flex: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.listOfComments .comment {
+    width: 70%;
+    height: auto;
+    padding: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+
 
 #individual {
     height: 500px;

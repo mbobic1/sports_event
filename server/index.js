@@ -125,6 +125,27 @@ app.post('/logout', function(req,res){
     })
  });
 
+ app.post('/insertComment', (req,res) =>{
+    console.log("zove li se funkcija");
+    const comment = req.body.comment;
+    const postId = req.body.postId;
+    console.log("COmment je dobat " + comment + " postIDe je dobar " + postId );
+    const sqlInsert = 'INSERT INTO comments (comment, postId) VALUES (?,?)';
+    db.query(sqlInsert, [comment, postId], (err, result) => {
+        console.log(result);
+        res.send("true");
+    })
+ })
+
+
+ app.get('/getCommentsbyId', function(req,res){
+    const postId = req.query.postId;
+    const sqlGet = "SELECT * FROM comments WHERE postId = ?;"
+    db.query(sqlGet, [postId] , (err, result) => {
+        res.send(result);
+    })
+ });
+
 app.listen(3001, () => {
     console.log("Server running on port 3001");
 });
