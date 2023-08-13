@@ -17,7 +17,7 @@ const TopBar = (props) => {
 
     
     useEffect( () => {
-        Axios.get('http://localhost:3001/api/userSession1', {
+        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
         withCredentials: true
     })
         .then(response => {
@@ -38,7 +38,7 @@ const TopBar = (props) => {
         try {
         // perform logout logic here
             try {
-                const response = await Axios.post('http://localhost:3001/logout', {
+                const response = await Axios.post('https://sportevent-alom.onrender.com/logout', {
             
                 }, {
                 withCredentials: true // include credentials in the request

@@ -13,7 +13,7 @@ const CreatePost = () => {
     const [user, setUSer] = useState(false); 
 
     useEffect( () => {
-        Axios.get('http://localhost:3001/api/userSession1', {
+        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
         withCredentials: true
     })
         .then(response => {
@@ -34,7 +34,7 @@ const CreatePost = () => {
                 popup();
             }
             else{
-                const response = await Axios.post('http://localhost:3001/posts/insert', {
+                const response = await Axios.post('https://sportevent-alom.onrender.com/posts/insert', {
                     title : username,
                     postText : password,
                     name: user

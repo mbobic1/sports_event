@@ -35,7 +35,7 @@ const LoginForm = () => {
                 vrijednostUnosaPopup();
             }
             else{
-                const response = await Axios.post('http://localhost:3001/api/login', {
+                const response = await Axios.post('https://sportevent-alom.onrender.com/api/login', {
                     username: username,
                     password: password,
                 }, {

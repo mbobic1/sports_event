@@ -14,7 +14,7 @@ const SinglePost = () => {
     const [newComment, setNewComment] = useState("");
 
     useEffect( () => {
-        Axios.get("http://localhost:3001/getPostbyId", {
+        Axios.get("https://sportevent-alom.onrender.com/getPostbyId", {
             params: {
               postId: id
             },
@@ -29,7 +29,7 @@ const SinglePost = () => {
     }, []);
 
     useEffect( () => {
-      Axios.get("http://localhost:3001/getCommentsbyId", {
+      Axios.get("https://sportevent-alom.onrender.com/getCommentsbyId", {
         params: {
           postId: id
         },
@@ -45,7 +45,7 @@ const SinglePost = () => {
     }, []);
 
     const addComment = async () => {
-      const response = await Axios.post("http://localhost:3001/insertComment", {
+      const response = await Axios.post("https://sportevent-alom.onrender.com/insertComment", {
         comment: newComment,
         postId: id,
       },{
