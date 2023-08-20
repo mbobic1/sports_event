@@ -23,7 +23,7 @@ const SigninForm = () => {
                 popup();
             }
             else{
-                const response = await Axios.post('http://localhost:3001/api/insert', {
+                const response = await Axios.post('https://sportevent-alom.onrender.com/api/insert', {
                     username: username,
                     password: password,
                     name: name
@@ -31,7 +31,7 @@ const SigninForm = () => {
                     withCredentials: true // include credentials in the request
                 });
                 if(provjeriStringove(response.data,true)){
-                    navigate("http://localhost:3000/posts");
+                    navigate("https://sportevent-alom.onrender.com/posts");
                 }
                 else{
                     showPopSameUser("login-popup")

@@ -12,7 +12,7 @@ const Posts = () => {
     const navigate = useNavigate();
     
     useEffect( () => {
-        Axios.get('http://localhost:3001/api/userSession1', {
+        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
         withCredentials: true
     })
         .then(response => {
@@ -26,7 +26,7 @@ const Posts = () => {
     }, []);
 
     useEffect( () => {
-        Axios.get('http://localhost:3001/posts/get', {
+        Axios.get('https://sportevent-alom.onrender.com/posts/get', {
             withCredentials: true
         }).then(response => {
             const data = response.data;
