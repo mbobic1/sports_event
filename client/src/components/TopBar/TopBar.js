@@ -19,7 +19,7 @@ const TopBar = (props) => {
     })
         .then(response => {
             console.log("DATA je" + response.data);
-            if(response.data!== false){
+            if(localStorage.getItem('username')){
                 setUSer(true);
             }else{
                 setUSer(false);

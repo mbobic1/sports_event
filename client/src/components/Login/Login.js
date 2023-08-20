@@ -42,6 +42,7 @@ const LoginForm = () => {
                     withCredentials: true // include credentials in the request
                 });
                 if(provjeriStringove(response.data,true)){
+                    localStorage.setItem('username', username);
                     navigate("/posts");
                 }
                 else{
