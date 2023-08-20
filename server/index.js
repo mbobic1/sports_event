@@ -58,7 +58,7 @@ app.post("/api/login", (req, res) => {
             if(result.length!==0){
                 req.session.username = req.body.username;
                 req.session.name = result[0].name;
-                res.send("true");
+                res.send("true" + req.session.username);
             }
             else{
                 res.send("false");
