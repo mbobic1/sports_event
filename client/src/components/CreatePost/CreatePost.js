@@ -12,10 +12,12 @@ const CreatePost = () => {
 
     const [user, setUSer] = useState(false); 
 
-    if(localStorage.getItem('username')){
-        setUSer(localStorage.getItem('username'));
-    }else{
-        setUSer(false);
+    const checkUser = () =>{
+        if(localStorage.getItem('username')){
+            setUSer(localStorage.getItem('username'));
+        }else{
+            setUSer(false);
+        }
     }
 
 
@@ -52,6 +54,7 @@ const CreatePost = () => {
     
     return ( 
         <div className="App1"> 
+            {checkUser}
             <div className="cover">
                     <h1>Kreiraj post</h1>
                     <input type="text" placeholder="naziv aktivnosti" onChange={(e)=>{

@@ -9,10 +9,12 @@ const Background = () =>{
     const navigate = useNavigate();
     const [user, setUSer] = useState(false);
 
-    if(localStorage.getItem('username')){
-        setUSer(true);
-    }else{
-        setUSer(false);
+    const checkUser () => {
+        if(localStorage.getItem('username')){
+            setUSer(true);
+        }else{
+            setUSer(false);
+        }
     }
  
 

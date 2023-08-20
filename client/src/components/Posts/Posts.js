@@ -22,10 +22,12 @@ const Posts = () => {
         })
     }, []);
 
-    if(localStorage.getItem('username')){
-        setUser(true);
-    }else{
-        setUser(false);
+    const checkUser () => {
+        if(localStorage.getItem('username')){
+            setUser(true);
+        }else{
+            setUser(false);
+        }
     }
  
 
