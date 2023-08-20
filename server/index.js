@@ -53,12 +53,12 @@ app.get("/api/userSession1", (req,res) => {
 app.post("/api/login", (req, res) => { 
     console.log("User name je: " + req.body.username)
     if (req.body.username) {
+        req.session.username = req.body.username;
         var sqlGetLogin = 'SELECT * FROM osoba WHERE username =? AND password=?';
         db.query(sqlGetLogin, [req.body.username, req.body.password] ,(err, result) => {
             if(result.length!==0){
-                req.session.username = req.body.username;
                 req.session.name = result[0].name;
-                res.send("true" + req.session.username);
+                res.send("true");
             }
             else{
                 res.send("false");
