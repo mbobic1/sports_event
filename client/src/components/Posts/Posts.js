@@ -23,9 +23,7 @@ const Posts = () => {
         .catch(error => {
             console.log("Error se desio kod session user" + error);        
         });
-    }, []);
 
-    useEffect( () => {
         Axios.get('https://sportevent-alom.onrender.com/posts/get', {
             withCredentials: true
         }).then(response => {
@@ -35,6 +33,8 @@ const Posts = () => {
             console.log("Error se desio untuar posts/get " + error);
         })
     }, []);
+
+ 
 
     const postData = (id) => {
         navigate({
