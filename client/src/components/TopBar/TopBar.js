@@ -28,7 +28,7 @@ const TopBar = (props) => {
         .catch(error => {
             console.log("Error se desio kod session user" + error);        
         });
-    });
+    }, []);
 
   
     const handleLogout = async () => {

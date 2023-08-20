@@ -23,7 +23,7 @@ const CreatePost = () => {
         .catch(error => {
             console.log("Error se desio kod session user" + error);        
         });
-    });
+    }, []);
 
 
 

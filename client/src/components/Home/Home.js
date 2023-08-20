@@ -23,7 +23,7 @@ const Background = () =>{
         .catch(error => {
             console.log("Error se desio kod session user" + error);        
         });
-    });
+    }, []);
 
     return (
         <div className="header">

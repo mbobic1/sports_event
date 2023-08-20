@@ -34,7 +34,7 @@ const Posts = () => {
         }).catch(error => {
             console.log("Error se desio untuar posts/get " + error);
         })
-    });
+    }, []);
 
     const postData = (id) => {
         navigate({

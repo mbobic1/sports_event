@@ -1,13 +1,14 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import TopBar from './components/TopBar/TopBar';
-import Home from './components/Home/Home';
-import LoginForm from './components/Login/Login';
-import Posts from './components/Posts/Posts';
-import Register from './components/Register/Register'
-import CreatePost from './components/CreatePost/CreatePost'
-import SinglePost from './components/SinglePost/SinglePost'
+import TopBar from '../src/components/TopBar/TopBar';
+import Home from '../src/components/Home/Home';
+import LoginForm from '../src/components/Login/Login';
+import Posts from '../src/components/Posts/Posts';
+import Register from '../src/components/Register/Register'
+import CreatePost from '../src/components/CreatePost/CreatePost'
+import SinglePost from '../src/components/SinglePost/SinglePost'
+
 
 function App() {
 
