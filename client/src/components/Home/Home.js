@@ -1,5 +1,5 @@
 import React from "react";
-import './css/Home.css'
+import './Home.css'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Axios from "axios";
@@ -10,7 +10,7 @@ const Background = () =>{
     const [user, setUSer] = useState(false);
 
     useEffect( () => {
-        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
+        Axios.get('http://localhost:3001/api/userSession1', {
         withCredentials: true
     })
         .then(response => {
@@ -28,13 +28,7 @@ const Background = () =>{
     return (
         <div className="header">
             <div className="headerTitles">
-                <span className="headerTitleSm">Povežite se sa prijateljima i drugim ljudima preko sport-event.</span>
-                <span className="headerTitleLg">Sport-event</span>
-                {user ? (
-                    <button className="btn1" onClick={ () => {navigate('/posts')}}>NASTAVI DALJE</button>
-                ) : (
-                    <button className="btn1" onClick={ () => {navigate('/login')}}>NASTAVI DALJE</button>
-                )}
+               
             </div>
     </div>
     );

@@ -5,8 +5,6 @@ const express = require('express');
 const session = require('express-session');
 
 
-//popraviti da se sessioja odmah updejta ne nakon ponovnog pristupa
-
 const app = express();
 app.use(cors({
     origin: 'http://localhost:3000', // replace with your client's origin URL

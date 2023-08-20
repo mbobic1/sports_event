@@ -1,23 +1,20 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { useRef ,useState, useEffect } from 'react';
-import { observer } from "mobx-react";
 import  Axios  from 'axios';
-import './css/TopBar.css'
+import './TopBar.css'
 import { useNavigate } from 'react-router-dom';
 
 
 
 const TopBar = (props) => {
     const navigate = useNavigate();
-    console.log("konj" + props.moj);
     const [sessionUs, setSessionUs] = useState('');
     const userRef = useRef(false);
     const [user, setUSer] = useState(false);  
-
     
     useEffect( () => {
-        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
+        Axios.get('http://localhost:3001/api/userSession1', {
         withCredentials: true
     })
         .then(response => {
@@ -38,7 +35,7 @@ const TopBar = (props) => {
         try {
         // perform logout logic here
             try {
-                const response = await Axios.post('https://sportevent-alom.onrender.com/logout', {
+                const response = await Axios.post('http://localhost:3001/logout', {
             
                 }, {
                 withCredentials: true // include credentials in the request
@@ -129,4 +126,4 @@ const TopBar = (props) => {
     );
 
 }
-export default  observer(TopBar);
+export default  TopBar;

@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import Axios from "axios";
-import "./css/Register.css"
+import "./Register.css"
 import { useNavigate } from "react-router-dom"; 
 
 
@@ -23,7 +23,7 @@ const SigninForm = () => {
                 popup();
             }
             else{
-                const response = await Axios.post('https://sportevent-alom.onrender.com/api/insert', {
+                const response = await Axios.post('http://localhost:3001/api/insert', {
                     username: username,
                     password: password,
                     name: name

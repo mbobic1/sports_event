@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import './css/SinglePost.css'
+import './SinglePost.css'
 import { useParams } from "react-router-dom";
 import Axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -13,8 +13,9 @@ const SinglePost = () => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
 
+
     useEffect( () => {
-        Axios.get("https://sportevent-alom.onrender.com/getPostbyId", {
+        Axios.get("http://localhost:3001/getPostbyId", {
             params: {
               postId: id
             },
@@ -29,7 +30,7 @@ const SinglePost = () => {
     }, []);
 
     useEffect( () => {
-      Axios.get("https://sportevent-alom.onrender.com/getCommentsbyId", {
+      Axios.get("http://localhost:3001/getCommentsbyId", {
         params: {
           postId: id
         },
@@ -45,7 +46,7 @@ const SinglePost = () => {
     }, []);
 
     const addComment = async () => {
-      const response = await Axios.post("https://sportevent-alom.onrender.com/insertComment", {
+      const response = await Axios.post("http://localhost:3001/insertComment", {
         comment: newComment,
         postId: id,
       },{

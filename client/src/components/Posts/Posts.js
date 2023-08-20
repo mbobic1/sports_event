@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
 import {useHistor} from "react-router-dom"
-import './css/Posts.css'
+import './Posts.css'
 
 
 
@@ -13,7 +13,7 @@ const Posts = () => {
     const navigate = useNavigate();
     
     useEffect( () => {
-        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
+        Axios.get('http://localhost:3001/api/userSession1', {
         withCredentials: true
     })
         .then(response => {
@@ -27,7 +27,7 @@ const Posts = () => {
     }, []);
 
     useEffect( () => {
-        Axios.get('https://sportevent-alom.onrender.com/posts/get', {
+        Axios.get('http://localhost:3001/posts/get', {
             withCredentials: true
         }).then(response => {
             const data = response.data;
