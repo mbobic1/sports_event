@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 import { useRef ,useState, useEffect } from 'react';
 import  Axios  from 'axios';
 import './TopBar.css'
@@ -15,6 +15,7 @@ const TopBar = (props) => {
     
     const checkUser = () => {
         if(localStorage.getItem('username')){
+            console.log("Jel uslo ovdje" + " " + localStorage.getItem('username'));
             setUSer(true);
         }else{
             setUSer(false);
