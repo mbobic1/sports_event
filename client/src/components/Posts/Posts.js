@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios'
-import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
 import {useHistor} from "react-router-dom"
 import './Posts.css'
@@ -62,4 +61,4 @@ const Posts = () => {
     );
 }
  
-export default observer(Posts);
+export default Posts;
