@@ -22,7 +22,7 @@ const Posts = () => {
         })
     }, []);
 
-    const checkUser () => {
+    const checkUser = () => {
         if(localStorage.getItem('username')){
             setUser(true);
         }else{
@@ -40,7 +40,7 @@ const Posts = () => {
 
     return ( 
         <div className="App1">  
-        
+            {checkUser}
             <div className="App-posts">
                 {listOfPosts.map((value, key) => {
                     return(

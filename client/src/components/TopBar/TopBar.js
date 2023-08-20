@@ -13,7 +13,7 @@ const TopBar = (props) => {
     const userRef = useRef(false);
     const [user, setUSer] = useState(false);  
     
-    const checkUser () => {
+    const checkUser = () => {
         if(localStorage.getItem('username')){
             setUSer(true);
         }else{
@@ -44,6 +44,7 @@ const TopBar = (props) => {
     return(
         
         <div className="citav">
+            {checkUser}
             <div className="top">
                 <div className="topLeft">
                     <i className="topIcon fab fa-facebook-square"></i>

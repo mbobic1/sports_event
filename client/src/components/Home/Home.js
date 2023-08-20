@@ -9,7 +9,7 @@ const Background = () =>{
     const navigate = useNavigate();
     const [user, setUSer] = useState(false);
 
-    const checkUser () => {
+    const checkUser = () => {
         if(localStorage.getItem('username')){
             setUSer(true);
         }else{
@@ -20,6 +20,7 @@ const Background = () =>{
 
     return (
         <div className="header">
+            {checkUser}
             <div className="headerTitles">
                
             </div>
