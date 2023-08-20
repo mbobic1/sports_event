@@ -50,13 +50,13 @@ app.get("/api/userSession1", (req,res) => {
     }      
 });
  
-app.post("/api/login", (req, res) => { 
+app.post("/api/login", async (req, res) => { 
     console.log("User name je: " + req.body.username)
     if (req.body.username) {
         req.session.username = req.body.username;
         console.log("ime je " + req.session.username)
         var sqlGetLogin = 'SELECT * FROM osoba WHERE username =? AND password=?';
-        db.query(sqlGetLogin, [req.body.username, req.body.password] ,(err, result) => {
+        await db.query(sqlGetLogin, [req.body.username, req.body.password] ,(err, result) => {
             if(result.length!==0){
                 req.session.name = result[0].name;
                 res.send("true");
