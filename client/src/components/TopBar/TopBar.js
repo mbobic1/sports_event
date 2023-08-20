@@ -13,22 +13,11 @@ const TopBar = (props) => {
     const userRef = useRef(false);
     const [user, setUSer] = useState(false);  
     
-    useEffect( () => {
-        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
-        withCredentials: true
-    })
-        .then(response => {
-            console.log("DATA je" + response.data);
-            if(localStorage.getItem('username')){
-                setUSer(true);
-            }else{
-                setUSer(false);
-            }
-    })
-        .catch(error => {
-            console.log("Error se desio kod session user" + error);        
-        });
-    }, []);
+    if(localStorage.getItem('username')){
+        setUSer(true);
+    }else{
+        setUSer(false);
+    }
 
   
     const handleLogout = async () => {

@@ -9,21 +9,12 @@ const Background = () =>{
     const navigate = useNavigate();
     const [user, setUSer] = useState(false);
 
-    useEffect( () => {
-        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
-        withCredentials: true
-    })
-        .then(response => {
-            if(response.data!== false){
-                setUSer(true);
-            }else{
-                setUSer(false);
-            }
-    })
-        .catch(error => {
-            console.log("Error se desio kod session user" + error);        
-        });
-    }, []);
+    if(localStorage.getItem('username')){
+        setUSer(true);
+    }else{
+        setUSer(false);
+    }
+ 
 
     return (
         <div className="header">

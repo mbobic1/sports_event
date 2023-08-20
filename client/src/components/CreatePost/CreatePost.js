@@ -12,19 +12,11 @@ const CreatePost = () => {
 
     const [user, setUSer] = useState(false); 
 
-    useEffect( () => {
-        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
-        withCredentials: true
-    })
-        .then(response => {
-            console.log("DATA je" + response.data);
-            setUSer(response.data);
-    })
-        .catch(error => {
-            console.log("Error se desio kod session user" + error);        
-        });
-    }, []);
-
+    if(localStorage.getItem('username')){
+        setUSer(localStorage.getItem('username'));
+    }else{
+        setUSer(false);
+    }
 
 
     const postData = async () => {

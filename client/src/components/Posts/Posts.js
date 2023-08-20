@@ -12,18 +12,6 @@ const Posts = () => {
     const navigate = useNavigate();
     
     useEffect( () => {
-        Axios.get('https://sportevent-alom.onrender.com/api/userSession1', {
-        withCredentials: true
-    })
-        .then(response => {
-            const data = response.data; // this line reads the data from the response object
-            setUser(data);
-            
-    })
-        .catch(error => {
-            console.log("Error se desio kod session user" + error);        
-        });
-
         Axios.get('https://sportevent-alom.onrender.com/posts/get', {
             withCredentials: true
         }).then(response => {
@@ -34,6 +22,11 @@ const Posts = () => {
         })
     }, []);
 
+    if(localStorage.getItem('username')){
+        setUser(true);
+    }else{
+        setUser(false);
+    }
  
 
     const postData = (id) => {
