@@ -14,10 +14,10 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const db = mysql.createPool({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'uma6bobic',
-    database: 'kosarka'
+    host: 'sql.freedb.tech',
+    user: 'freedb_murisbob1',
+    password: 'wscfE2gmpZtE*S4',
+    database: 'freedb_diplomskiData'
 });
 
 app.use(session({
