@@ -7,7 +7,7 @@ const session = require('express-session');
 
 const app = express();
 app.use(cors({
-    origin: ['109.163.168.214'], // replace with your client's origin URL
+    origin: ['https://sporteventfront.onrender.com'], // replace with your client's origin URL
     credentials: true
   }));
 app.use(express.json());

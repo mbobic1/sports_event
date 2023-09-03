@@ -40,7 +40,6 @@ const Posts = () => {
 
     return ( 
         <div className="App1">  
-            {checkUser}
             <div className="App-posts">
                 {listOfPosts.map((value, key) => {
                     return(
